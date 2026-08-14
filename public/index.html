@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f8ff">
+  <meta name="description" content="ChatMe is a private, temporary random chat with no accounts and no chat history.">
+  <title>ChatMe — Private random chat</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="ChatMe home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+        <span>ChatMe</span>
+      </a>
+      <div class="online-pill" aria-live="polite">
+        <span class="online-dot"></span>
+        <strong id="onlineCount">—</strong>
+        <span>online</span>
+      </div>
+    </header>
+
+    <main>
+      <section id="homeView" class="home-view">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="lock-mini">✦</span> Privacy-first random chat</div>
+          <h1>Meet someone.<br><span>Leave no trace.</span></h1>
+          <p class="hero-text">Private 1-to-1 conversations with no account, no profile and no chat history. When the chat ends, it disappears.</p>
+
+          <div class="trust-row" aria-label="Privacy features">
+            <span>◇ No signup</span>
+            <span>◇ No database</span>
+            <span>◇ Ephemeral encryption</span>
+          </div>
+        </div>
+
+        <section class="start-card" aria-labelledby="startTitle">
+          <div class="card-heading">
+            <div>
+              <p class="overline">START A CHAT</p>
+              <h2 id="startTitle">Who are you here to meet?</h2>
+            </div>
+            <span class="privacy-badge">Private by design</span>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">I am</span>
+            <div class="segmented" data-control="gender" role="radiogroup" aria-label="Your gender">
+              <button type="button" class="segment active" data-value="girl" role="radio" aria-checked="true">Girl</button>
+              <button type="button" class="segment" data-value="boy" role="radio" aria-checked="false">Boy</button>
+              <button type="button" class="segment" data-value="other" role="radio" aria-checked="false">Other</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">Match me with</span>
+            <div class="segmented" data-control="preference" role="radiogroup" aria-label="Preferred chat partner">
+              <button type="button" class="segment" data-value="girl" role="radio" aria-checked="false">Girls</button>
+              <button type="button" class="segment" data-value="boy" role="radio" aria-checked="false">Boys</button>
+              <button type="button" class="segment active" data-value="any" role="radio" aria-checked="true">Anyone</button>
+            </div>
+          </div>
+
+          <label class="age-check">
+            <input id="adultCheck" type="checkbox">
+            <span class="checkmark" aria-hidden="true"></span>
+            <span>I confirm I am <strong>18 or older</strong> and will use ChatMe responsibly.</span>
+          </label>
+
+          <button id="startButton" class="primary-button" type="button">
+            <span>Start random chat</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <p id="startError" class="form-error" role="alert"></p>
+
+          <p class="micro-copy">No account. No username. Nothing to remember.</p>
+        </section>
+
+        <section class="privacy-grid" aria-label="How ChatMe protects privacy">
+          <article>
+            <span class="feature-icon">⌁</span>
+            <h3>Temporary by default</h3>
+            <p>Messages are relayed live and never written to a ChatMe database.</p>
+          </article>
+          <article>
+            <span class="feature-icon">⌾</span>
+            <h3>Minimal metadata</h3>
+            <p>No account, profile, username or persistent chat identifier is required.</p>
+          </article>
+          <article>
+            <span class="feature-icon">⇄</span>
+            <h3>Files stay transient</h3>
+            <p>Accepted files up to 6 MB are encrypted in-browser and relayed in small chunks.</p>
+          </article>
+        </section>
+      </section>
+
+      <section id="queueView" class="queue-view hidden" aria-live="polite">
+        <div class="search-orbit" aria-hidden="true">
+          <span class="orbit orbit-one"></span>
+          <span class="orbit orbit-two"></span>
+          <span class="search-core"><span></span><span></span></span>
+        </div>
+        <p class="overline">RANDOM MATCH</p>
+        <h2>Finding someone<span class="dot-animation">...</span></h2>
+        <p>Looking for a compatible person who is online right now.</p>
+        <button id="cancelSearchButton" class="secondary-button" type="button">Cancel</button>
+      </section>
+
+      <section id="chatView" class="chat-view hidden" aria-label="Private chat">
+        <div class="chat-card">
+          <header class="chat-header">
+            <div class="partner-info">
+              <div class="avatar partner-avatar" aria-hidden="true">C</div>
+              <div>
+                <div class="partner-line"><strong>Chat Partner</strong><span id="partnerStatusDot" class="status-dot"></span></div>
+                <span id="partnerStatus" class="partner-status">Connecting securely…</span>
+              </div>
+            </div>
+            <div class="chat-actions">
+              <button id="nextButton" class="ghost-button" type="button" title="Find another person">Next <span aria-hidden="true">↗</span></button>
+              <button id="endButton" class="danger-button" type="button">End chat</button>
+            </div>
+          </header>
+
+          <div id="messages" class="messages" aria-live="polite" aria-label="Messages">
+            <div class="encryption-notice">
+              <span class="shield-icon">◇</span>
+              <div>
+                <strong>Private session</strong>
+                <span>Messages and accepted files are encrypted in your browser before relay.</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="typingIndicator" class="typing-indicator" aria-live="polite"></div>
+
+          <footer class="composer-wrap">
+            <div class="composer">
+              <input id="fileInput" type="file" hidden>
+              <button id="fileButton" class="attach-button" type="button" aria-label="Send a photo or file" title="Send a photo or file (max 6 MB)">
+                <span aria-hidden="true">＋</span>
+              </button>
+              <textarea id="messageInput" rows="1" maxlength="2000" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Write a message…" aria-label="Message"></textarea>
+              <button id="sendButton" class="send-button" type="button" aria-label="Send message"><span aria-hidden="true">↑</span></button>
+            </div>
+            <div class="composer-meta">
+              <span>Encrypted in your browser</span>
+              <span>Files max 6 MB</span>
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>ChatMe</span>
+      <span>18+ · No accounts · No chat history</span>
+      <button id="privacyButton" class="text-button" type="button">Privacy notes</button>
+    </footer>
+  </div>
+
+  <dialog id="privacyDialog" class="privacy-dialog">
+    <form method="dialog">
+      <button class="dialog-close" value="close" aria-label="Close">×</button>
+      <p class="overline">PRIVACY NOTES</p>
+      <h2>Designed to know less.</h2>
+      <p>ChatMe keeps matchmaking state only in server memory. It does not use an application database and does not intentionally log IP addresses, messages or file contents.</p>
+      <p>Chat payloads and accepted file contents are encrypted in your browser with an ephemeral key for each match. The server still sees basic connection metadata, your matching choices while you wait, file size, and traffic timing.</p>
+      <p>Age access is based on self-confirmation only. ChatMe cannot guarantee who is on the other side. Do not share sensitive personal information.</p>
+      <p class="dialog-footnote">Hosting providers may maintain infrastructure-level telemetry outside this application's control.</p>
+      <button class="primary-button compact" value="close">Got it</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

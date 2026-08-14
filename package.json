@@ -1,0 +1,19 @@
+{
+  "name": "chatme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Privacy-first random 1-to-1 chat for Koyeb",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --test",
+    "check": "node --check server.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "ws": "8.21.3"
+  }
+}
