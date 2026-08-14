@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8ff">
+  <meta name="robots" content="index, follow, max-snippet:-1">
+  <meta name="description" content="Read ChatMe's privacy approach: no accounts, no application database for chat history, in-browser encryption, transient file relay, and minimal matchmaking data.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ChatMe">
+  <meta property="og:title" content="ChatMe Privacy — No Accounts, No Chat History">
+  <meta property="og:description" content="How ChatMe minimizes application data while providing private temporary random chat.">
+  <meta property="og:url" content="https://chatme-7gk8.onrender.com/privacy.html">
+  <link rel="canonical" href="https://chatme-7gk8.onrender.com/privacy.html">
+  <title>ChatMe Privacy — No Accounts, No Chat History</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/info.css">
+</head>
+<body class="info-page">
+  <main class="info-shell">
+    <header class="info-header">
+      <a class="brand" href="/" aria-label="ChatMe home"><span class="brand-mark" aria-hidden="true"><span></span><span></span></span><span>ChatMe</span></a>
+      <a class="info-back" href="/">Start a chat →</a>
+    </header>
+
+    <article class="info-card">
+      <p class="info-kicker">Privacy</p>
+      <h1>Designed to know less.</h1>
+      <p>ChatMe is built around data minimization. You do not need an account, username, email address, profile, contact list, or persistent chat identity to use the service.</p>
+
+      <h2>No application chat database</h2>
+      <p>ChatMe does not use an application database to store user accounts or conversation history. Messages are relayed live between matched users rather than intentionally written to a ChatMe message archive.</p>
+
+      <h2>Temporary matchmaking state</h2>
+      <p>While you wait for a match, the server temporarily needs your selected gender, matching preference, connection state, and a public encryption key. This state is held in server memory for matchmaking. Matching choices and public keys are cleared when they are no longer needed for pairing.</p>
+
+      <h2>Browser-side encryption</h2>
+      <p>For each match, browsers establish an ephemeral encryption key. Chat message payloads are encrypted in the browser before relay. The server relays encrypted payloads and does not need the plaintext conversation to deliver them.</p>
+
+      <h2>Files remain transient</h2>
+      <p>Files are limited to 6 MB. A recipient must accept an offered file before transfer begins. Accepted file contents are encrypted in the sender's browser and relayed in small binary chunks. ChatMe does not intentionally build a permanent server-side file library.</p>
+
+      <h2>What infrastructure can still see</h2>
+      <p>No internet service can honestly promise that all network metadata disappears. The ChatMe server necessarily observes active network connections and traffic timing while providing the service. The hosting provider may also maintain infrastructure-level telemetry, security data, or operational logs outside the application's direct control.</p>
+
+      <h2>Application logging</h2>
+      <p>The ChatMe application is intentionally designed not to log message contents, file contents, or IP addresses in its own application logs. Security and reliability controls are implemented without creating a user conversation history.</p>
+
+      <div class="info-note">Do not share passwords, payment details, government identifiers, private addresses, or other highly sensitive information with a random chat partner.</div>
+
+      <nav class="info-links" aria-label="Learn more">
+        <a href="/about.html">About</a>
+        <a href="/safety.html">Safety</a>
+        <a href="/">Start random chat</a>
+      </nav>
+    </article>
+
+    <footer class="info-footer"><span>ChatMe · Privacy-first random chat</span><span>18+ only</span></footer>
+  </main>
+</body>
+</html>

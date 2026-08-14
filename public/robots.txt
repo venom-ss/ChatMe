@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chatme-7gk8.onrender.com/sitemap.txt
